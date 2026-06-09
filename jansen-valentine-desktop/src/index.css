@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────
+   JANSEN VALENTINE — Editorial Boutique Design System
+   ────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    --noir: 10 8 7;
+    --ivory: 248 244 237;
+    --champagne: 200 173 127;
+    --rosedust: 201 166 160;
+    --wine: 123 28 46;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    font-feature-settings: "ss01", "cv11", "ss03";
+    text-rendering: optimizeLegibility;
+    background-color: #050403;
+    color: #F8F4ED;
+    overflow: hidden;
+  }
+
+  /* Custom scrollbar — minimal boutique */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(200, 173, 127, 0.15);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 173, 127, 0.3);
+  }
+
+  /* Text selection */
+  ::selection {
+    background: rgba(200, 173, 127, 0.3);
+    color: #F8F4ED;
+  }
+
+  /* Input/button reset */
+  button, input, select, textarea {
+    font-family: inherit;
+  }
+
+  /* Disable text-cursor pointer on draggable Tauri header */
+  [data-tauri-drag-region] {
+    cursor: default;
+  }
+}
+
+@layer components {
+  /* ── Maison Surface ──────────────────────────────────── */
+  .maison-surface {
+    @apply bg-noir-900/80 border border-white/[0.04] backdrop-blur-sm;
+  }
+
+  .maison-panel {
+    @apply bg-gradient-to-br from-noir-800/60 to-noir-900/40 border border-white/[0.04] shadow-panel;
+  }
+
+  /* ── Editorial Heading ───────────────────────────────── */
+  .editorial-eyebrow {
+    @apply font-mono text-2xs uppercase tracking-editorial text-champagne/70;
+  }
+
+  .editorial-title {
+    @apply font-display font-medium text-ivory;
+  }
+
+  /* ── Couture Button ──────────────────────────────────── */
+  .btn-couture {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           font-mono text-xs uppercase tracking-luxe
+           transition-all duration-300 ease-out
+           border border-champagne/30 bg-champagne/[0.04]
+           text-champagne hover:bg-champagne hover:text-noir-900
+           hover:border-champagne hover:shadow-glow
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+           font-mono text-xs uppercase tracking-luxe
+           text-stone hover:text-ivory transition-colors duration-200;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center w-9 h-9
+           text-stone hover:text-champagne hover:bg-white/[0.03]
+           rounded transition-all duration-200;
+  }
+
+  /* ── Input Couture ───────────────────────────────────── */
+  .input-couture {
+    @apply w-full bg-noir-900/60 border border-white/[0.06]
+           rounded px-4 py-2.5 text-sm text-ivory placeholder:text-stone/40
+           focus:outline-none focus:border-champagne/50 focus:bg-noir-900/90
+           transition-all duration-200;
+  }
+
+  /* ── Stat Card ───────────────────────────────────────── */
+  .stat-card {
+    @apply relative overflow-hidden rounded-lg p-6
+           bg-gradient-to-br from-noir-800/60 to-noir-900/30
+           border border-white/[0.04]
+           hover:border-champagne/20 transition-all duration-500;
+  }
+
+  /* ── Boutique Product Card ───────────────────────────── */
+  .product-card {
+    @apply group relative overflow-hidden rounded-md
+           bg-noir-900/40 border border-white/[0.03]
+           hover:border-champagne/20 transition-all duration-500;
+  }
+
+  /* ── Status Pills ────────────────────────────────────── */
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full
+           font-mono text-2xs uppercase tracking-luxe;
+  }
+
+  /* ── Maison Divider ──────────────────────────────────── */
+  .maison-divider {
+    @apply flex items-center gap-4 my-6;
+  }
+  .maison-divider::before,
+  .maison-divider::after {
+    content: "";
+    @apply flex-1 h-px bg-gradient-to-r from-transparent via-champagne/20 to-transparent;
+  }
+}
+
+@layer utilities {
+  /* ── Noir Background Composition ─────────────────────── */
+  .bg-maison {
+    background-color: #050403;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(200, 173, 127, 0.04), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(123, 28, 46, 0.05), transparent 60%),
+      radial-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: auto, auto, 3px 3px;
+  }
+
+  .bg-spotlight {
+    background:
+      radial-gradient(ellipse 100% 70% at 50% -10%, rgba(200, 173, 127, 0.12), transparent 60%),
+      #050403;
+  }
+
+  /* ── Editorial Decorations ───────────────────────────── */
+  .corner-frame::before,
+  .corner-frame::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(200, 173, 127, 0.4);
+    pointer-events: none;
+  }
+  .corner-frame::before {
+    top: 8px;
+    left: 8px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .corner-frame::after {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  /* ── Shimmer Loading ─────────────────────────────────── */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200, 173, 127, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.4s linear infinite;
+  }
+
+  /* ── Glass Layer ─────────────────────────────────────── */
+  .glass {
+    @apply backdrop-blur-md bg-noir-900/40 border border-white/[0.05];
+  }
+
+  .text-gradient-champagne {
+    background: linear-gradient(135deg, #E5D5B5 0%, #C8AD7F 50%, #9B8358 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
